@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package proto;
+
+option go_package = "./proto";
+
+message Review {
+    string target = 1;
+    string sender = 2;
+    int32 stars = 3;
+    int32 task = 4;
+}
+
+message CreateReviewRequest {
+    Review review = 1;
+}
+
+message CreateReviewResponse {
+    Review review = 1;
+}
+
+message GetReviewsByTaskRequest {
+    int32 task = 1;
+}
+
+message GetReviewsByTaskResponse {
+    Review review = 1;
+}
+
+service ReviewService {
+    rpc CreateReview(CreateReviewRequest) returns (CreateReviewResponse) {};
+    rpc GetReviewsByTask(GetReviewsByTaskRequest) returns (GetReviewsByTaskResponse) {};
+}
